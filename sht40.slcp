@@ -1,0 +1,56 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: sht40
+label: sht40
+description: |
+  An iBeacon device implementation that sends non-connectable advertisements in iBeacon format. The iBeacon Service gives Bluetooth accessories a simple and convenient way to send iBeacons to smartphones. This example can be tested together with the EFR Connect mobile app.
+category: Bluetooth Examples
+package: Bluetooth
+quality: production
+readme:
+- {path: readme.md}
+- {path: readme.md}
+source:
+- {path: main.c}
+- {path: app.c}
+tag: [prebuilt_demo, 'hardware:rf:band:2400']
+include:
+- path: .
+  file_list:
+  - {path: app.h}
+sdk: {id: gecko_sdk, version: 4.0.2}
+toolchain_settings: []
+component:
+- {id: EFR32BG22C112F352GM32}
+- {id: app_assert}
+- {id: bluetooth_feature_advertiser}
+- {id: bluetooth_feature_connection}
+- {id: bluetooth_feature_gatt}
+- {id: bluetooth_feature_gatt_server}
+- {id: bluetooth_feature_scanner}
+- {id: bluetooth_feature_sm}
+- {id: bluetooth_feature_system}
+- {id: bluetooth_stack}
+- {id: bootloader_interface}
+- {id: emlib_i2c}
+- {id: gatt_configuration}
+- instance: [inst]
+  id: i2cspm
+- {id: mpu}
+other_file:
+- {path: create_bl_files.bat}
+- {path: create_bl_files.sh}
+- {path: readme_img0.png}
+- {path: readme_img1.png}
+- {path: readme_img2.png}
+- {path: readme_img3.png}
+configuration:
+- {name: SL_STACK_SIZE, value: '2752'}
+- {name: SL_HEAP_SIZE, value: '9200'}
+- condition: [psa_crypto]
+  name: SL_PSA_KEY_USER_SLOT_COUNT
+  value: '0'
+ui_hints:
+  highlight:
+  - {path: config/btconf/gatt_configuration.btconf}
+  - {path: readme.md, focus: true}
+
